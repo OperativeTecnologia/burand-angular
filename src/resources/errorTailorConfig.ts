@@ -2,9 +2,11 @@ export const errorTailorConfig = {
   errors: {
     useValue: {
       required: 'Este campo é requerido.',
-      cnpj: 'O valor informado não é um CNPJ válido.',
-      cpf: 'O valor informado não é um CPF válido.',
+      cnpjInvalid: 'O valor informado não é um CNPJ válido.',
+      cpfInvalid: 'O valor informado não é um CPF válido.',
       email: 'O valor informado não é um email válido.',
+      emailInvalid: 'O valor informado não é um email válido.',
+      fullNameInvalid: 'O valor informado precisa ter um nome e sobrenome.',
       minlength: ({ requiredLength, actualLength }: any): string =>
         `Tamanho mínimo ${requiredLength}, atual ${actualLength}`,
       mask: 'O valor informado não está no formato correto.',
