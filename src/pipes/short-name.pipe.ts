@@ -1,8 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { abbreviateLastName } from '../utils';
 
 @Pipe({
   standalone: true,
-  name: 'shortName',
+  name: 'shortName'
 })
 export class ShortNamePipe implements PipeTransform {
   transform(name: string): string {
@@ -10,13 +11,6 @@ export class ShortNamePipe implements PipeTransform {
       return '';
     }
 
-    const nameSprited = name.split(' ');
-    const last =
-      nameSprited.length > 1 ? nameSprited[nameSprited.length - 1] : '';
-
-    return (
-      nameSprited[0] +
-      (last.length > 1 ? ' ' + last.substr(0, 1).toUpperCase() + '.' : '')
-    );
+    return abbreviateLastName(name);
   }
 }
