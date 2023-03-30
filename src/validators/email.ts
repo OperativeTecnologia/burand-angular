@@ -1,10 +1,14 @@
 import { AbstractControl, Validators } from '@angular/forms';
 
 export function emailValidator(control: AbstractControl): Validators | null {
-  const re =
+  if (!control.value) {
+    return null;
+  }
+
+  const REGEX_EMAIL =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  if (re.test(String(control.value).toLowerCase())) {
+  if (REGEX_EMAIL.test(control.value.toLowerCase())) {
     return null;
   }
 
