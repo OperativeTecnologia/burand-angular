@@ -2,12 +2,12 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
   standalone: true,
-  selector: 'img[fallback]',
+  selector: 'img[fallback]'
 })
 export class ImgFallbackDirective {
   @Input() fallback: string = '';
-  private retry = 0;
-  private maxRetry = 4;
+  @Input() retry = 0;
+  private currentRetry = 0;
 
   constructor(private eRef: ElementRef<HTMLImageElement>) {}
 
@@ -26,8 +26,8 @@ export class ImgFallbackDirective {
       return;
     }
 
-    if (this.retry !== this.maxRetry) {
-      this.retry += 1;
+    if (this.currentRetry !== this.retry) {
+      this.currentRetry += 1;
       nativeElement.src = defaultUrl;
 
       setTimeout(() => {
