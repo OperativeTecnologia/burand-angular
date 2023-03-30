@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   standalone: true,
-  name: 'timeAgo',
+  name: 'timeAgo'
 })
 export class TimeAgoPipe extends DatePipe implements PipeTransform {
   override transform(value: Date | string | number | null | undefined): any {
@@ -19,7 +19,6 @@ export class TimeAgoPipe extends DatePipe implements PipeTransform {
     const minutes = Math.round(Math.abs(seconds / 60));
     const hours = Math.round(Math.abs(minutes / 60));
     const days = Math.round(Math.abs(hours / 24));
-    const months = Math.round(Math.abs(days / 30.416));
 
     if (Number.isNaN(seconds)) {
       return '';
@@ -41,7 +40,7 @@ export class TimeAgoPipe extends DatePipe implements PipeTransform {
       return `há ${days} d`;
     }
 
-    if (months <= 12) {
+    if (d.getFullYear() === now.getFullYear()) {
       return super.transform(value, "dd 'de' MMM 'às' HH:mm");
     }
 
