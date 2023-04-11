@@ -1,10 +1,10 @@
-export class JsonStorage {
-  static getItem<T = any>(key: string): T {
+export class LocalStorage {
+  static getItem<T = unknown>(key: string): T {
     const item = localStorage.getItem(key);
     return item ? JSON.parse(item) : null;
   }
 
-  static setItem(key: string, value: any): void {
+  static setItem(key: string, value: unknown): void {
     const stringify = JSON.stringify(value);
     localStorage.setItem(key, stringify);
   }
