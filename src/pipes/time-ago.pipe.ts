@@ -1,11 +1,21 @@
 import { DatePipe } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+ * Pipe para exibir o tempo decorrido em formato amigável.
+ * Transforma uma data em uma string representando o tempo decorrido
+ */
 @Pipe({
   standalone: true,
   name: 'timeAgo'
 })
 export class TimeAgoPipe extends DatePipe implements PipeTransform {
+  /**
+   * Transforma a data fornecida em uma string representando o tempo decorrido.
+   *
+   * @param value - A data a ser transformada.
+   * @returns Uma string representando o tempo decorrido desde a data fornecida até o momento atual.
+   */
   override transform(value: Date | string | number | null | undefined): any {
     if (!value) {
       return '';

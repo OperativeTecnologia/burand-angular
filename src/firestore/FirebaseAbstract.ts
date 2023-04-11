@@ -50,20 +50,22 @@ type IReadOptions = {
  *
  * Não chame esse construtor diretamente.
  * Em vez disso, crie um repositório e estenda o comportamento
+ *
+ * @template T - O tipo de modelo que representa os documentos armazenados no Firestore.
  */
 export abstract class FirebaseAbstract<T extends Model> {
   /**
-   * @param {Firestore} firestore - Referência do Firestore
-   * @param {string} collectionName - Nome da coleção no Firestore
+   * @param firestore - Referência do Firestore
+   * @param collectionName - Nome da coleção no Firestore
    */
   public constructor(protected firestore: Firestore, protected collectionName: string) {}
 
   /**
-   * Adicione um novo documento ao Firestore
+   * Adiciona um novo documento ao Firestore.
    *
    * @param data - Um objeto contendo os dados do novo documento.
-   * @param options - Um objeto para configurar o comportamento definido.
-   * @returns Um `Promise` resolvido com o id do documento criado.
+   * @param options - Um objeto para configurar o comportamento de escrita.
+   * @returns Uma `Promise` resolvida com o id do documento criado.
    */
   public async add(data: AddDocument<T>, options: IWriteOptions = { timestamps: true }): Promise<string> {
     const clone = toFirestore(data);
@@ -81,11 +83,11 @@ export abstract class FirebaseAbstract<T extends Model> {
   }
 
   /**
-   * Altere um documento existente no Firestore
+   * Atualiza um documento existente no Firestore.
    *
    * @param data - Um objeto contendo os dados a serem alterados.
-   * @param options - Um objeto para configurar o comportamento definido.
-   * @returns Um `Promise` resolvida vazia.
+   * @param options - Um objeto para configurar o comportamento de escrita.
+   * @returns Uma `Promise` resolvida vazia.
    */
   public update(data: UpdateDocument<T>, options: IWriteOptions = { timestamps: true }): Promise<void> {
     const clone = toFirestore(data);
@@ -108,8 +110,8 @@ export abstract class FirebaseAbstract<T extends Model> {
    * ou `mergeFields`, os dados fornecidos podem ser mesclados em um documento existente.
    *
    * @param data - Um objeto contendo os dados a serem adicionados ou alterados.
-   * @param options - Um objeto para configurar o comportamento definido.
-   * @returns Um `Promise` resolvida vazia.
+   * @param options - Um objeto para configurar o comportamento de escrita.
+   * @returns Uma `Promise` resolvida vazia.
    */
   public set(data: SetDocument<T>, options: SetOptions & IWriteOptions = { timestamps: true }): Promise<void> {
     const clone = toFirestore(data);
@@ -129,8 +131,8 @@ export abstract class FirebaseAbstract<T extends Model> {
   /**
    * Exclui o documento referenciado pelo `id` especificado.
    *
-   * @param {string} id - Id do documento a ser excluído.
-   * @returns Um `Promise` resolvida vazia.
+   * @param id - O id do documento a ser excluído.
+   * @returns Uma `Promise` resolvida vazia.
    */
   public delete(id: string): Promise<void> {
     return deleteDoc(doc(this.collection(), id));
@@ -139,10 +141,10 @@ export abstract class FirebaseAbstract<T extends Model> {
   /**
    * Busca um documento pelo seu id.
    *
-   * @param id - Id do documento a ser buscado.
-   * @param options - Um objeto para configurar o comportamento definido.
+   * @param id - O id do documento a ser buscado.
+   * @param options - Um objeto para configurar o comportamento de leitura.
    * @throws {DocumentNotFoundError}
-   * @returns Um `Promise` resolvida com o conteúdo do documento.
+   * @returns Uma `Promise` resolvida com o conteúdo do documento.
    */
   public async getById(id: string, options: IReadOptions = { timestamps: true }): Promise<T> {
     const docSnap = await getDoc(doc(this.collection(), id));
@@ -157,8 +159,8 @@ export abstract class FirebaseAbstract<T extends Model> {
   /**
    * Busca um documento pelo seu id.
    *
-   * @param id - Id do documento a ser buscado.
-   * @param options - Um objeto para configurar o comportamento definido.
+   * @param id - O id do documento a ser buscado.
+   * @param options - Um objeto para configurar o comportamento de leitura.
    * @returns Um `Observable` para eventos.
    */
   public getAsyncById(id: string, options: IReadOptions = { timestamps: true }): Observable<T | null> {
@@ -172,9 +174,9 @@ export abstract class FirebaseAbstract<T extends Model> {
   /**
    * Busca documentos por seus Ids.
    *
-   * @param ids - Ids dos documentos a serem buscados.
-   * @param options - Um objeto para configurar o comportamento definido.
-   * @returns Um `Promise` resolvida com o conteúdo do documentos.
+   * @param ids - Os ids dos documentos a serem buscados.
+   * @param options - Um objeto para configurar o comportamento de leitura.
+   * @returns Uma `Promise` resolvida com o conteúdo dos documentos.
    */
   public async getByIds(ids: string[], options: IReadOptions = { timestamps: true }): Promise<T[]> {
     const promises = ids.map(id => this.getById(id, options));
@@ -184,8 +186,8 @@ export abstract class FirebaseAbstract<T extends Model> {
   /**
    * Busca todos os documentos da coleção.
    *
-   * @param options - Um objeto para configurar o comportamento definido.
-   * @returns Um `Promise` resolvida com o conteúdo do documentos.
+   * @param options - Um objeto para configurar o comportamento de leitura.
+   * @returns Uma `Promise` resolvida com o conteúdo dos documentos.
    */
   public async getAll(options: IReadOptions = { timestamps: true }): Promise<T[]> {
     return this.getDocs(this.collection(), options);
@@ -202,7 +204,7 @@ export abstract class FirebaseAbstract<T extends Model> {
    * @param orderBy - A chave do campo pelo qual os resultados devem ser ordenados.
    * @param orderByDirection - A direção na qual os resultados devem ser ordenados.
    * @param options - As opções adicionais para a leitura dos documentos.
-   * @returns Uma promessa que resolve em um array de documentos T.
+   * @returns Uma `Promise` resolvida com um array de documentos `T`.
    */
   protected async getWhere(
     field: keyof T,
@@ -237,7 +239,7 @@ export abstract class FirebaseAbstract<T extends Model> {
    * @param orderBy - A chave do campo pelo qual os resultados devem ser ordenados.
    * @param orderByDirection - A direção na qual os resultados devem ser ordenados.
    * @param options - As opções adicionais para a leitura dos documentos.
-   * @returns Uma promessa que resolve em um array de documentos T.
+   * @returns Uma `Promise` resolvida com um array de documentos `T`.
    */
   protected async getWhereMany(
     filters: IFirebaseWhere<T>[],

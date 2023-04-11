@@ -1,12 +1,33 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
+/**
+ * Uma diretiva que lida com erros de carregamento de imagem e substitui a fonte da imagem por um URL de fallback.
+ *
+ * @example
+ * Aplique o atributo `fallback` a um elemento `img` ou `ion-img` para usar a diretiva:
+ * ```html
+ * // native HTML
+ * <img src="image-url.jpg" fallback="fallback-image-url.jpg" [retry]="2" />
+ *
+ * // ionic
+ * <ion-img src="image-url.jpg" fallback="fallback-image-url.jpg" [retry]="2" />
+ * ```
+ */
 @Directive({
   standalone: true,
   selector: 'img[fallback], ion-img[fallback]'
 })
 export class ImgFallbackDirective {
+  /**
+   * A URL de fallback a ser usada quando a origem da imagem original falha ao carregar.
+   */
   @Input() fallback = '';
+
+  /**
+   * O número de vezes para tentar carregar novamente a fonte da imagem original antes de usar o URL de fallback.
+   */
   @Input() retry = 0;
+
   private currentRetry = 0;
 
   constructor(private eRef: ElementRef<HTMLImageElement>) {}

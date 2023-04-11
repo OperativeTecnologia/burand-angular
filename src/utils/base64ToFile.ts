@@ -3,8 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 /**
  * Converte uma imagem codificada em `base64` em um objeto `File`.
  *
- * @param {string} base64Image - A string de imagem codificada em base64.
- * @returns {File} O objeto `File` convertido.
+ * @param base64Image - A string de imagem codificada em base64.
+ * @returns O objeto `File` convertido.
  */
 export function base64ToFile(base64Image: string): File {
   const split = base64Image.split(',');

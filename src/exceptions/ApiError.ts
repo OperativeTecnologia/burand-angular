@@ -25,8 +25,8 @@ export class ApiError {
   /**
    * Cria uma instância de um erro de API com código, mensagem e status HTTP.
    *
-   * @param {string} code - O código de erro.
-   * @param {number} statusCode - O status HTTP associado ao erro.
+   * @param code - O código de erro.
+   * @param statusCode - O status HTTP associado ao erro.
    */
   constructor(code: string, statusCode: number) {
     this.message = getApiError(code);

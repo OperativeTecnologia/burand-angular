@@ -17,8 +17,8 @@ export class AppError {
   /**
    * Cria uma instância de um erro da aplicação com título e mensagem.
    *
-   * @param {string} title - O título do erro.
-   * @param {string} message - A mensagem do erro.
+   * @param title - O título do erro.
+   * @param message - A mensagem do erro.
    */
   constructor(title: string, message: string) {
     this.title = title;
