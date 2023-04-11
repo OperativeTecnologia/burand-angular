@@ -19,7 +19,8 @@ import {
   SetOptions,
   updateDoc,
   where,
-  WhereFilterOp
+  WhereFilterOp,
+  Query
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -187,8 +188,7 @@ export abstract class FirebaseAbstract<T extends Model> {
    * @returns Um `Promise` resolvida com o conteúdo do documentos.
    */
   public async getAll(options: IReadOptions = { timestamps: true }): Promise<T[]> {
-    const { docs } = await getDocs(this.collection());
-    return docs.map(document => ofFirestore(document, options.timestamps));
+    return this.getDocs(this.collection(), options);
   }
 
   /**
@@ -213,21 +213,19 @@ export abstract class FirebaseAbstract<T extends Model> {
     orderByDirection: OrderByDirection | null = null,
     options: IReadOptions = { timestamps: true }
   ): Promise<T[]> {
-    const queryFilter: QueryConstraint[] = [where(field as string, operator, value)];
+    const queryConstraints: QueryConstraint[] = [where(field as string, operator, value)];
 
     if (limit) {
-      queryFilter.push(queryLimit(limit));
+      queryConstraints.push(queryLimit(limit));
     }
 
     if (orderBy) {
-      queryFilter.push(queryOrderBy(orderBy as string, orderByDirection || 'asc'));
+      queryConstraints.push(queryOrderBy(orderBy as string, orderByDirection || 'asc'));
     }
 
-    const q = query(this.collection(), ...queryFilter);
+    const q = query(this.collection(), ...queryConstraints);
 
-    const { docs } = await getDocs(q);
-
-    return docs.map(document => ofFirestore(document, options.timestamps));
+    return this.getDocs(q, options);
   }
 
   /**
@@ -248,21 +246,32 @@ export abstract class FirebaseAbstract<T extends Model> {
     orderByDirection: OrderByDirection | null = null,
     options: IReadOptions = { timestamps: true }
   ): Promise<T[]> {
-    const queryFilter: QueryConstraint[] = filters.map(({ field, operator, value }) => {
+    const queryConstraints: QueryConstraint[] = filters.map(({ field, operator, value }) => {
       return where(field as string, operator, value);
     });
 
     if (orderBy) {
-      queryFilter.push(queryOrderBy(orderBy as string, orderByDirection || 'asc'));
+      queryConstraints.push(queryOrderBy(orderBy as string, orderByDirection || 'asc'));
     }
 
     if (limit) {
-      queryFilter.push(queryLimit(limit));
+      queryConstraints.push(queryLimit(limit));
     }
 
-    const q = query(this.collection(), ...queryFilter);
+    const q = query(this.collection(), ...queryConstraints);
 
-    const { docs } = await getDocs(q);
+    return this.getDocs(q, options);
+  }
+
+  /**
+   * Realiza uma consulta no Firestore com base nas restrições de consulta fornecidas.
+   *
+   * @param query - A instância de `Query` a ser usada como base para as restrições.
+   * @param options - Um objeto para configurar o comportamento de leitura.
+   * @returns Uma `Promise` resolvida com um array de documentos `T`.
+   */
+  protected async getDocs(query: Query, options: IReadOptions = { timestamps: true }): Promise<T[]> {
+    const { docs } = await getDocs(query);
 
     return docs.map(document => ofFirestore(document, options.timestamps));
   }
