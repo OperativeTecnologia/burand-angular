@@ -1,8 +1,14 @@
-# @burand/angular
+<h1 align="center">
+  @burand/angular
+</h1>
 
-Este é um repositório abstrato para uso com Angular. Ele contém métodos básicos para manipular uma coleção do Firebase, e métodos comuns para uso.
+<div align="center">
 
-https://burand-docs.vercel.app/
+|&nbsp;&nbsp;&nbsp;[📖&nbsp; Documentação](https://burand.dev/)&nbsp;&nbsp;&nbsp;|
+
+</div>
+
+Fornece uma ampla gama de ferramentas, incluindo métodos para manipular coleções do Firebase e recursos comuns, otimizados para o desenvolvimento de projetos em Angular.
 
 ## Instalação
 

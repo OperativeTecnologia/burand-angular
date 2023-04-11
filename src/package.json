@@ -1,7 +1,12 @@
 {
   "name": "@burand/angular",
   "version": "1.0.0",
-  "description": "Fornece métodos essenciais para a manipulação de uma coleção no Firebase, além de métodos comuns para uso.",
+  "description": "Fornece uma ampla gama de ferramentas, para o desenvolvimento de projetos em Angular.",
+  "homepage": "https://burand.dev/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flavianoredressa/burand-angular.git"
+  },
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^15.0.0",
