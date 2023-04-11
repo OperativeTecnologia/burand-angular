@@ -2,16 +2,17 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
   standalone: true,
-  selector: 'img[fallback]'
+  selector: 'img[fallback], ion-img[fallback]'
 })
 export class ImgFallbackDirective {
-  @Input() fallback: string = '';
+  @Input() fallback = '';
   @Input() retry = 0;
   private currentRetry = 0;
 
   constructor(private eRef: ElementRef<HTMLImageElement>) {}
 
   @HostListener('error')
+  @HostListener('ionError')
   loadFallbackOnError() {
     const { nativeElement } = this.eRef;
 
