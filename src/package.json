@@ -1,6 +1,6 @@
 {
   "name": "@burand/angular",
-  "version": "2.0.0",
+  "version": "1.1.0",
   "description": "Fornece uma ampla gama de ferramentas, para o desenvolvimento de projetos em Angular.",
   "homepage": "https://burand.dev/",
   "repository": {
@@ -9,8 +9,8 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^15.0.0 || ^16.0.0",
-    "@angular/core": "^15.0.0 || ^16.0.0",
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0",
     "@angular/fire": "^7.0.0",
     "firebase": "^9.0.0",
     "uuid": "^9.0.0"
@@ -19,51 +19,67 @@
   "exports": {
     "./directives": {
       "types": "./directives/index.d.ts",
-      "esm2022": "./esm2022/directives/index.mjs",
-      "esm": "./esm2022/directives/index.mjs",
-      "default": "./fesm2022/burand-angular.mjs"
+      "esm2020": "./esm2020/directives/index.mjs",
+      "es2020": "./fesm2020/burand-angular.mjs",
+      "es2015": "./fesm2015/burand-angular.mjs",
+      "node": "./fesm2015/burand-angular.mjs",
+      "default": "./fesm2020/burand-angular.mjs"
     },
     "./exceptions": {
       "types": "./exceptions/index.d.ts",
-      "esm2022": "./esm2022/exceptions/index.mjs",
-      "esm": "./esm2022/exceptions/index.mjs",
-      "default": "./fesm2022/burand-angular.mjs"
+      "esm2020": "./esm2020/exceptions/index.mjs",
+      "es2020": "./fesm2020/burand-angular.mjs",
+      "es2015": "./fesm2015/burand-angular.mjs",
+      "node": "./fesm2015/burand-angular.mjs",
+      "default": "./fesm2020/burand-angular.mjs"
     },
     "./firestore": {
       "types": "./firestore/index.d.ts",
-      "esm2022": "./esm2022/firestore/index.mjs",
-      "esm": "./esm2022/firestore/index.mjs",
-      "default": "./fesm2022/burand-angular.mjs"
+      "esm2020": "./esm2020/firestore/index.mjs",
+      "es2020": "./fesm2020/burand-angular.mjs",
+      "es2015": "./fesm2015/burand-angular.mjs",
+      "node": "./fesm2015/burand-angular.mjs",
+      "default": "./fesm2020/burand-angular.mjs"
     },
     "./pipes": {
       "types": "./pipes/index.d.ts",
-      "esm2022": "./esm2022/pipes/index.mjs",
-      "esm": "./esm2022/pipes/index.mjs",
-      "default": "./fesm2022/burand-angular.mjs"
+      "esm2020": "./esm2020/pipes/index.mjs",
+      "es2020": "./fesm2020/burand-angular.mjs",
+      "es2015": "./fesm2015/burand-angular.mjs",
+      "node": "./fesm2015/burand-angular.mjs",
+      "default": "./fesm2020/burand-angular.mjs"
     },
     "./resources": {
       "types": "./resources/index.d.ts",
-      "esm2022": "./esm2022/resources/index.mjs",
-      "esm": "./esm2022/resources/index.mjs",
-      "default": "./fesm2022/burand-angular.mjs"
+      "esm2020": "./esm2020/resources/index.mjs",
+      "es2020": "./fesm2020/burand-angular.mjs",
+      "es2015": "./fesm2015/burand-angular.mjs",
+      "node": "./fesm2015/burand-angular.mjs",
+      "default": "./fesm2020/burand-angular.mjs"
     },
     "./typings": {
       "types": "./typings/index.d.ts",
-      "esm2022": "./esm2022/typings/index.mjs",
-      "esm": "./esm2022/typings/index.mjs",
-      "default": "./fesm2022/burand-angular.mjs"
+      "esm2020": "./esm2020/typings/index.mjs",
+      "es2020": "./fesm2020/burand-angular.mjs",
+      "es2015": "./fesm2015/burand-angular.mjs",
+      "node": "./fesm2015/burand-angular.mjs",
+      "default": "./fesm2020/burand-angular.mjs"
     },
     "./utils": {
       "types": "./utils/index.d.ts",
-      "esm2022": "./esm2022/utils/index.mjs",
-      "esm": "./esm2022/utils/index.mjs",
-      "default": "./fesm2022/burand-angular.mjs"
+      "esm2020": "./esm2020/utils/index.mjs",
+      "es2020": "./fesm2020/burand-angular.mjs",
+      "es2015": "./fesm2015/burand-angular.mjs",
+      "node": "./fesm2015/burand-angular.mjs",
+      "default": "./fesm2020/burand-angular.mjs"
     },
     "./validators": {
       "types": "./validators/index.d.ts",
-      "esm2022": "./esm2022/validators/index.mjs",
-      "esm": "./esm2022/validators/index.mjs",
-      "default": "./fesm2022/burand-angular.mjs"
+      "esm2020": "./esm2020/validators/index.mjs",
+      "es2020": "./fesm2020/burand-angular.mjs",
+      "es2015": "./fesm2015/burand-angular.mjs",
+      "node": "./fesm2015/burand-angular.mjs",
+      "default": "./fesm2020/burand-angular.mjs"
     }
   }
 }
