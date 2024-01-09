@@ -1,6 +1,6 @@
 {
   "name": "@burand/angular",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Fornece uma ampla gama de ferramentas, para o desenvolvimento de projetos em Angular.",
   "homepage": "https://burand.dev/",
   "repository": {
@@ -9,11 +9,11 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^15.0.0 || ^16.0.0",
-    "@angular/core": "^15.0.0 || ^16.0.0",
-    "@angular/fire": "^7.0.0",
-    "firebase": "^9.0.0",
-    "uuid": "^9.0.0"
+    "@angular/common": ">=15.0.0",
+    "@angular/core": ">=15.0.0",
+    "@angular/fire": ">=7.0.0",
+    "firebase": ">=9.0.0",
+    "uuid": ">=9.0.0"
   },
   "sideEffects": false,
   "exports": {
