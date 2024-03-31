@@ -26,8 +26,7 @@ export function passwordMatchValidator(fieldMatch: string): ValidatorFn | null {
 
     const password = control.value;
 
-    const controls = control.parent.controls as any;
-    const passwordConfirmation = controls[fieldMatch].value;
+    const passwordConfirmation = control.parent.get(fieldMatch).value;
 
     return password === passwordConfirmation ? null : { passwordMatchInvalid: true };
   };
