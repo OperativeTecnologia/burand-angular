@@ -1,4 +1,5 @@
 export * from './age.pipe';
+export * from './currency.pipe';
 export * from './filter.pipe';
 export * from './safe.pipe';
 export * from './short-name.pipe';
