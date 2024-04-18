@@ -7,4 +7,5 @@ export * from './inputUUID';
 export * from './readFileAsDataURL';
 export * from './removeAccents';
 export * from './removeNonDigits';
-
+export * from './toCents';
+export * from './toCurrency';
