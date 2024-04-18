@@ -16,7 +16,8 @@ export class TimeAgoPipe extends DatePipe implements PipeTransform {
    * @param value - A data a ser transformada.
    * @returns Uma string representando o tempo decorrido desde a data fornecida até o momento atual.
    */
-  override transform(value: Date | string | number | null | undefined): any {
+  override transform(value: Date | string | number | null | undefined): null;
+  override transform(value: Date | string | number | null | undefined): string {
     if (!value) {
       return '';
     }
