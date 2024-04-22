@@ -7,6 +7,7 @@ export const errorTailorConfig = {
       email: 'O valor informado não é um email válido.',
       emailInvalid: 'O valor informado não é um email válido.',
       fullNameInvalid: 'O valor informado precisa ter um nome e sobrenome.',
+      passwordMatchInvalid: 'As senhas digitadas não coincidem',
       minlength: ({ requiredLength, actualLength }: any): string =>
         `Tamanho mínimo ${requiredLength}, atual ${actualLength}`,
       mask: 'O valor informado não está no formato correto.',
